@@ -1,0 +1,115 @@
+body{
+    min-width: 320px;
+}
+
+.dialog-title{
+    margin-left: 30px;
+    font-family:Microsoft YaHei,Roboto,serif;
+    font-size: 20px;
+    padding-top: 150px;
+    width: 50px;
+    display: inline-block;
+}
+
+.dialog-title-back{
+    height: 198px;
+    width: 100%;
+}
+
+#dialog_login{
+    min-width: 330px;
+    max-width: 448px;
+}
+
+.dialog-close{
+    display: inline-block;
+    float: right;
+    margin: 16px;
+}
+
+.dialog-content{
+    padding: 20px 50px;
+    height: 337px;
+}
+
+.dialog-action{
+    margin-top: 50px;
+}
+
+#chat_msg{
+    max-width: 604px;
+    padding: 0 !important;
+    overflow-y: auto;
+    max-height: 500px;
+    height: auto;
+}
+
+#dialog_group_ul{
+    max-width: 604px;
+    padding: 0 !important;
+    overflow-y: auto;
+    max-height: 500px;
+    height: auto;
+}
+
+
+#chat-hist-btn{
+    padding: 8px 8px;
+    width: 60px;
+    border: none;
+}
+
+#chat-target-div{
+    text-align: center;
+    max-width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.chat-bu-left .mdui-list-item-avatar{
+    text-align: center;
+}
+.chat-bu-right .mdui-list-item-avatar{
+    text-align: center;
+}
+
+.chat-bu-right .mdui-list-item-text{
+    text-align: right;
+}
+
+.chat-bu-right .mdui-list-item-title{
+    text-align: right;
+}
+
+#chat-input-div{
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#chat-input-textfield-div{
+    width: 100%;
+    max-width: 468px;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+@media screen and (max-height: 638px){
+    .dialog-title-back{
+        height: 64px;
+        width: 100%;
+    }
+
+    .dialog-title{
+        padding-top: 24px;
+    }
+}
+
+@media screen and (max-height: 465px){
+    #dialog_login{
+        overflow-y: auto;
+    }
+}

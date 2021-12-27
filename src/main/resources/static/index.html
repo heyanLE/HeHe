@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="full-height" lang="zh">
+<head>
+    <title>Hehehe - chat anywhere</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+          integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+          crossorigin="anonymous"/>
+    <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+            integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+            crossorigin="anonymous"></script>
+    <script src="js/jquery-3.6.0.min.js"></script>
+</head>
+<body class="mdui-center mdui-theme-primary-blue-grey mdui-theme-accent-red">
+
+<div class="mdui-appbar">
+    <div class="mdui-appbar mdui-color-blue-grey">
+        <div class="mdui-toolbar mdui-color-theme">
+            <a href="javascript:" id="appbar_title" class="mdui-typo-title">未登录</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a id="appbar_btn_login"  onclick="onAppbarLoginButtonClick()" class="mdui-btn mdui-btn">登录</a>
+            <a id="appbar_btn_add" mdui-menu="{target: '#appbar_add_menu'}" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">add</i></a>
+            <ul class="mdui-menu" id="appbar_add_menu">
+                <li class="mdui-menu-item">
+                    <a onclick="onAddFriendButtonClick()" href="javascript:" class="mdui-ripple">好友</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a onclick="onAddGroupButtonClick()" href="javascript:">创建群组</a>
+                </li>
+                <li class="mdui-menu-item">
+                    <a onclick="onJoinGroupButtonClick()" href="javascript:">加入群组</a>
+                </li>
+            </ul>
+            <a id="appbar_btn_exit" onclick="onAppbarExitButtonClick()" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">exit_to_app</i></a>
+
+
+        </div>
+        <div id="main-tab" class="mdui-tab mdui-color-theme">
+            <a href="#content-notification" class="mdui-ripple mdui-ripple-white">通知</a>
+            <a href="#content-friends" class="mdui-ripple mdui-ripple-white">好友</a>
+            <a href="#content-group" class="mdui-ripple mdui-ripple-white">群组</a>
+            <a href="#content-chat" class="mdui-ripple mdui-ripple-white">聊天</a>
+        </div>
+    </div>
+    <div id="content">
+        <div id="content-notification" class="mdui-p-a-2">
+            <ul id="notification_list" class="mdui-list">
+
+            </ul>
+        </div>
+        <div id="content-friends" class="mdui-p-a-2">
+            <ul id="friends_list" class="mdui-list">
+
+            </ul>
+        </div>
+        <div id="content-group" class="mdui-p-a-2">
+            <ul id="group_list" class="mdui-list">
+
+            </ul>
+        </div>
+        <div id="content-chat" class="mdui-p-a-2">
+            <div class="mdui-center">
+
+                <div onclick="onChatTargetClick()" id="chat-target-div" class="mdui-list-item mdui-ripple chat-bu-left">
+                    <div id="chat-avatar-friend" class="mdui-list-item-avatar mdui-color-theme-accent"><i class="mdui-icon material-icons">person</i></div>
+                    <div id="chat-avatar-group" class="mdui-list-item-avatar mdui-color-theme-accent"><i class="mdui-icon material-icons">group</i></div>
+                    <div class="mdui-list-item-content">
+                        <div id="chat-target-msg" class="mdui-list-item-title"></div>
+                        <div id="chat-target-group-msg" class="mdui-list-item-text mdui-list-item-one-line">（点击查看群成员）</div>
+                    </div>
+                </div>
+                <ul id="chat_msg" class="mdui-center">
+                    <li class="mdui-list-item mdui-ripple chat-bu-left">
+                        <div class="mdui-list-item-avatar mdui-color-theme-accent"><i class="mdui-icon material-icons">person</i></div>
+                        <div class="mdui-list-item-content">
+                            <div class="mdui-list-item-text mdui-list-item-one-line">Heyanle</div>
+                            <div class="mdui-list-item-title">Hello world !</div>
+                        </div>
+                    </li>
+                    <li class="mdui-list-item mdui-ripple chat-bu-right">
+                        <div class="mdui-list-item-content">
+                            <div class="mdui-list-item-text mdui-list-item-one-line">Kekele</div>
+                            <div class="mdui-list-item-title">HHH</div>
+                        </div>
+                        <div class="mdui-list-item-avatar mdui-color-theme"><i class="mdui-icon material-icons">person</i></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="chat-input-div">
+                <button onclick="onHistBtnClick();" class="mdui-btn mdui-btn-icon mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">message</i></button>
+                <div id="chat-input-textfield-div" class="mdui-textfield">
+                    <input id="chat-input-textfield" class="mdui-textfield-input" type="text" placeholder="发送的内容"/>
+                </div>
+                <button onclick="onSendBtnClick();" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">chevron_right</i></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mdui-dialog" id="dialog_history_member">
+    <div id="dialog_history_title" class="mdui-dialog-title"></div>
+    <div class="mdui-dialog-content">
+
+        <div  id="dialog_history_process">
+            <div class="mdui-center mdui-spinner mdui-spinner-colorful"></div>
+        </div>
+
+        <ul style="padding-left: 0" id="dialog_history_ul">
+
+        </ul>
+
+
+
+    </div>
+
+    <div class="mdui-dialog-actions" style="text-align: center">
+        <button style="min-width: 0 !important;" onclick="onPreHistoryButtonClick()" id="history_pre" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon material-icons">chevron_left</i></button>
+        <span style="padding-left: 16px; padding-right: 16px" id="span_now_page"> 1 </span>
+        <button style="min-width: 0 !important;" onclick="onNextHistoryButtonClick()" id="history_next" class="mdui-btn mdui-btn-icon mdui-color-theme-accent mdui-ripple"><i class="mdui-icon material-icons">chevron_right</i></button>
+        <button class="mdui-btn mdui-ripple mdui-float-right" mdui-dialog-close>确认</button>
+    </div>
+</div>
+
+<div class="mdui-dialog" id="dialog_group_member">
+    <div id="dialog_group_title" class="mdui-dialog-title"></div>
+    <div class="mdui-dialog-content">
+
+        <div  id="dialog_group_member_process">
+            <div class="mdui-center mdui-spinner mdui-spinner-colorful"></div>
+        </div>
+
+        <ul id="dialog_group_ul">
+
+        </ul>
+    </div>
+    <div class="mdui-dialog-actions">
+        <button class="mdui-btn mdui-ripple" mdui-dialog-close >确认</button>
+    </div>
+</div>
+
+<div class="mdui-dialog" id="dialog_login">
+    <div class="dialog-title-back mdui-color-deep-purple">
+        <div class="dialog-title mdui-text-color-white">登录</div>
+        <button mdui-dialog-close class="dialog-close mdui-btn mdui-btn-icon mdui-text-color-white"><i class="mdui-icon material-icons">&#xe5cd;</i></button>
+    </div>
+    <div class="dialog-content">
+        <div id="dialog_login_username_input_div" class="mdui-textfield mdui-textfield-floating-label">
+            <label class="mdui-textfield-label">用户名</label>
+            <input id="login_username_input" class="mdui-textfield-input" type="text" required/>
+            <div class="mdui-textfield-error">请输入正确的用户名</div>
+        </div>
+        <div class="mdui-textfield mdui-textfield-floating-label" id="dialog_login_password_div">
+            <label class="mdui-textfield-label">密码</label>
+            <input onclick="onLoginPasswordInputClick()" id="login_password_input" class="mdui-textfield-input" type="password" required/>
+            <div class="mdui-textfield-error" id="dialog_login_password_error">密码不能为空</div>
+        </div>
+
+
+        <div class="dialog-action">
+            <button onclick="onLoginButtonClick()" id="login_button" class="mdui-btn mdui-ripple mdui-color-pink-accent mdui-float-right">登录或注册</button>
+        </div>
+
+        <div style="height: 20px"></div>
+    </div>
+</div>
+
+<script src="js/fetch.js"></script>
+<script src="js/index/variable.js"></script>
+<script src="js/index/function.js"></script>
+<script>
+    init();
+</script>
+
+</body>
+</html>
